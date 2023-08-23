@@ -32,10 +32,13 @@ app.post("/userData", async (req, res) => {
 });
 
 mongoose
-  .connect(process.env.MONGO_URI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
+  .connect(
+    "mongodb+srv://mithesh:VCNJX5kwkc45c6E4@cluster0.lfvekwz.mongodb.net/",
+    {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    }
+  )
   .then(() => {
     console.log("connected to database");
     app.listen(3000, () => console.log("Server Started"));
