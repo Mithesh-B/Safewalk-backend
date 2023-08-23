@@ -1,3 +1,4 @@
+require("dotenv").config()
 const express = require("express");
 const app = express();
 const cors = require("cors");
@@ -31,7 +32,7 @@ app.post("/userData", async (req, res) => {
 });
 
 mongoose
-  .connect("mongodb://127.0.0.1", {
+  .connect(process.env.MONGO_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
