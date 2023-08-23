@@ -30,6 +30,21 @@ const userdataSchema = new mongoose.Schema(
       type: String,
       required: false,
     },
+    coordinates: {
+      type: [
+        {
+          type: Number,
+        },
+      ],
+      required: true,
+      validate: {
+        validator: function (arr) {
+          return arr.length === 2;
+        },
+        message: (props) =>
+          `${props.value} must contain exactly two numeric values.`,
+      },
+    },
   },
   {
     timestamp: true,

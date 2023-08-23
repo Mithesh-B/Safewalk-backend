@@ -1,10 +1,13 @@
 const express = require("express");
 const app = express();
+const cors = require("cors");
 const mongoose = require("mongoose");
 const User = require("./models/userdata")
 
 app.use(express.json());
 
+// Use the cors middleware to allow requests from all origins
+app.use(cors());
 
 app.get("/allUserData", async (req, res) => {
   try {
