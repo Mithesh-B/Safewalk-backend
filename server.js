@@ -1,9 +1,9 @@
-
+require("dotenv").config();
 const express = require("express");
 const app = express();
 const cors = require("cors");
 const mongoose = require("mongoose");
-const User = require("./models/userdata")
+const User = require("./models/userdata");
 
 app.use(express.json());
 
@@ -21,19 +21,19 @@ app.get("/allUserData", async (req, res) => {
 });
 
 app.post("/userData", async (req, res) => {
-    try {
-        const user = await User.create(req.body)
-        res.status(200).json(user)
-      
-    } catch (error) {
-        console.log(error.message)
-        res.status(500).json({message: error.message})
+  try {
+    const user = await User.create(req.body);
+    res.status(200).json(user);
+  } catch (error) {
+    console.log(error.message);
+    res.status(500).json({ message: error.message });
   }
 });
 
 mongoose
   .connect(
-    "mongodb+srv://mithesh:VCNJX5kwkc45c6E4@cluster0.lfvekwz.mongodb.net/" || 3000,
+    process.env.MONGO_URI ||
+      3000,
     {
       useNewUrlParser: true,
       useUnifiedTopology: true,
